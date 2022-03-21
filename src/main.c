@@ -48,7 +48,7 @@ int	main(void)
 {
 	t_vars	vars;
 	t_data	img;
-	int	i;
+	int	i = 0;
 	int j = 0;
 	int	t = 0;
 	
@@ -57,6 +57,11 @@ int	main(void)
 	img.img = mlx_new_image(vars.mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	
+	while (++i < 1920)
+	{
+		draw_line(i, 0, 1000, 1000, &img);
+	}
+	/*	
 	while (j < 1080)
 	{
 		i = 0;
@@ -82,7 +87,9 @@ int	main(void)
 		else
 			t = 1;
 	}
+	*/
 
+	//draw_circlef(&img, 0, 0, 500, 0x0000FF00);
 	mlx_put_image_to_window(vars.mlx, vars.mlx_win, img.img, 0, 0);
 	mlx_key_hook(vars.mlx_win, keypress, &vars);
 	mlx_loop(vars.mlx);

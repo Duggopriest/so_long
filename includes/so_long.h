@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 12:29:19 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/03/21 12:52:45 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/03/21 14:18:32 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ void	draw_circlef(t_data *img, int x, int y, int size, int color);
 int		dist(int fx, int fy, int sx, int sy);
 void	pixel_put(t_data *data, int x, int y, int color);
 int		create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b);
+void	draw_line(int fx, int fy, int sx, int sy, t_data *img);
 
 #endif

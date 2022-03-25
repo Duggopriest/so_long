@@ -3,10 +3,9 @@
 
 void	swapi(int *a, int *b)
 {
-	int	*temp;
-	temp = a;
-	a = b;
-	b = temp;
+	*a = *a + *b;
+	*b = *a - *b;
+	*a = *a - *b;
 }
 
 int	abs(int	a)
@@ -16,52 +15,54 @@ int	abs(int	a)
 	return (a);
 }
 
-int	*append(int *array, double d, int size)
+int	*ft_append(t_int *values, float d)
 {
 	int	*new;
 	int	i;
 
-	i = size;
-	new = (int *)malloc((i + 1) * sizeof(int));
+	i = values->size;
+	new = malloc((i) * sizeof(int *));
+	if (d < 2000)
 	new[i] = d;
-	while (--i)
-		new[i] = array[i];
-	free(array);
+	while (--i > 0)
+		new[i] = values->array[i];
+	free(values->array);
+	values->size++;
 	return (new);
 }
 
-int *Interpolate(int fx, int fy, int sx, int sy)
+void	Interpolate(int fx, int fy, int sx, int sy, t_int *values)
 {
-	double	a;
-	double	d;
-	int	i;
-	int	*values;
-	int	size;
-
-	values = (int *)malloc(sizeof(int) * 1);
-	size = 0;
-	if (fx == sx)
-       return (&sy);
-    a = (double)(sy - fy) / (double)(sx - fx);
+	float	a;
+	float	d;
+	int		i;
+	
+	values->array = malloc(((sx - fx) + 1) * sizeof(int));
+	values->size = 0;
+	printf("malloced %d bytes\n", sx - fx);
+    a = (float)(sy - fy) / (float)(sx - fx);
     d = fy;
 	i = fx;
-    while (i < sx)
+	while (i < sx)
 	{
-		printf("d = %f\n", d + a);
-        values = append(values, d, ++size);
-        d = d + a;
+		printf("\nd = %f\n", d);
+        values->array[values->size] = (int)d;
+		printf("array[%d] = %d\n", i, values->array[values->size]);
+		d = d + a;
+		values->size++;
 		i++;
     }
-    return (values);
+	printf("interpolate done\n");
 }
 
 void	draw_line(int fx, int fy, int sx, int sy, t_data *img)
 {
-	int	*ys;
-	int	*xs;
-	int	x;
-	int	y;
-    if (abs(sx - fx) > abs(sy - fy))
+	t_int	ys;
+	t_int	xs;
+	int		x;
+	int		y;
+    
+	if (abs(sx - fx) > abs(sy - fy))
 	{
         if (fx > sx)
 		{
@@ -69,10 +70,11 @@ void	draw_line(int fx, int fy, int sx, int sy, t_data *img)
 			swapi(&fy, &sy);
         }
 		x = fx;
-        ys = Interpolate(fx, fy, sx, sy);
-        while (x < sx)
+        Interpolate(fx, fy, sx, sy, &ys);
+		while (x < sx)
 		{
-			pixel_put(img, x, ys[x - fx], 0x00FF0000);
+			if (ys.array[x - fx] < 1000)
+				pixel_put(img, x, ys.array[x - fx], 0x00FF0000);
 			x++;
 		}
     } 
@@ -84,10 +86,12 @@ void	draw_line(int fx, int fy, int sx, int sy, t_data *img)
 			swapi(&fy, &sy);
         }
 		y = fy;
-        xs = Interpolate(fy, fx, sy, sx);
-        while (y < sy)
+        Interpolate(fy, fx, sy, sx, &xs);
+        while (y < sy && y - fy >= 0)
 		{
-			pixel_put(img, xs[y - fy], y, 0x00FF0000);
+			
+			if (xs.array[y - fy] < 1080)
+				pixel_put(img, xs.array[y - fy], y, 0x00FF0000);
 			y++;
 		}
     }

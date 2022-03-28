@@ -39,20 +39,16 @@ void	Interpolate(int fx, int fy, int sx, int sy, t_int *values)
 	
 	values->array = malloc(((sx - fx) + 1) * sizeof(int));
 	values->size = 0;
-	printf("malloced %d bytes\n", sx - fx);
     a = (float)(sy - fy) / (float)(sx - fx);
     d = fy;
 	i = fx;
 	while (i < sx)
 	{
-		printf("\nd = %f\n", d);
         values->array[values->size] = (int)d;
-		printf("array[%d] = %d\n", i, values->array[values->size]);
 		d = d + a;
 		values->size++;
 		i++;
     }
-	printf("interpolate done\n");
 }
 
 void	draw_line(int fx, int fy, int sx, int sy, t_data *img)

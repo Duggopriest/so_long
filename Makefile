@@ -7,6 +7,11 @@ LIBS = minilibx/libmlx.a -L$(LIBALL) -L$(LIBX) -lmlx
 FLAGS = $(INCS) $(LIBS) -framework OpenGL -framework Appkit
 NAME = so_long.out
 
+LIBXLINUX = minilibx-linux
+LIBSLINUX = minilibx-linux/libmlx.a -L$(LIBALL) -L$(LIBXLINUX)
+INCSLINUX = -I$(LIBXLINUX) -I$(INC) -I$(LIBALL)
+FLAGSLINUX = $(INCSLINUX) $(LIBSLINUX) -lXext -lX11 -lm -lz
+
 all:
 	@clear
 	@echo -n Compiling Libs...
@@ -17,10 +22,20 @@ all:
 	@gcc $(SRC) $(FLAGS) -o $(NAME)
 	@echo Done
 
+
+
+linux:
+	@clear
+	@echo Done
+	@echo -n Compiling so_long...
+	@gcc $(SRC) $(FLAGSLINUX) -o $(NAME)
+	@echo Done
+
 clean:
 	@rm -rf $(NAME)
 	@make -s fclean -C $(LIBALL)
 	@make -s clean -C $(LIBX)
+	@make -s clean -C $(LIBXLINUX)
 
 fclean: clean
 

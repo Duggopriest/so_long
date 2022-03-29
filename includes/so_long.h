@@ -39,8 +39,8 @@ typedef struct s_textures {
 	t_img	*player;
 	t_img	*ground;
 	t_img	*obj;
-	t_img	*goal;
 	t_img	*wall;
+	t_img	*exit;
 }	t_textures;
 
 typedef struct s_data {
@@ -75,7 +75,7 @@ typedef struct s_grid {
 }	t_grid;
 
 typedef struct s_map {
-	t_tile	**tiles;
+	t_tile	**ti;
 	t_grid	*grid;
 	t_v2	*player_pos;
 }	t_map;

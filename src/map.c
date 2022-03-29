@@ -3,15 +3,16 @@
 
 //ground;
 //obj;
-//goal;
+//exit;
 //wall;
 t_textures	*grab_textures(t_render *render)
 {
-	t_textures	textures;
+	t_textures	*t;
 
-	textures.player = mlx_xpm_file_to_image(render->vars->mlx,
-			"../textures/player.xpm", &textures.player->w, &textures.player->h);
-	return (&textures);
+	t = malloc(sizeof(t));
+	t->player = mlx_xpm_file_to_image(render->vars->mlx,
+			"../textures/player.xpm", &t->player->w, &t->player->h);
+	return (t);
 }
 
 t_grid	*grab_grid(char	*path)
@@ -26,7 +27,7 @@ t_grid	*grab_grid(char	*path)
 	while (1)
 	{
 		new->grid[new->h] = get_next_line(fd);
-		if (!new->grid[new->h])
+		if (!new->grid[new->h] || new->h >= 100)
 			break ;
 		new->h++;
 	}
@@ -34,8 +35,40 @@ t_grid	*grab_grid(char	*path)
 	return (new);
 }
 
-t_map	*build_map(char *file)
+//mlx_put_image_to_window(r->vars->mlx, r->vars->mlx_win, r->img->img, , int y );
+t_map	*build_tiles(char *file, char *map, t_render *r)
 {
-	t_map	map;
-	t_v2	player_pos;
+	t_map		*m;
+	t_textures	*t;
+	t_v2		player_pos;
+	int			i;
+	int			j;
+
+	m = malloc(sizeof(m));
+	m->grid = grab_grid(map);
+	m->ti = malloc((m->grid->h * m->grid->w) * sizeof(t_tile));
+	t = grab_textures(r);
+	j = 0;
+	while (j < m->grid->h)
+	{
+		i = 0;
+		while(i < m->grid->w)
+		{
+			if (m->grid->grid[j][i] == p)
+			{
+				m->ti[i][j].img = t->player;
+				player_pos.x = i;
+				player_pos.y = j;
+			}
+			else if (m->grid->grid[j][i] == '1')
+				m->ti[i][j].img = t->wall;
+			else if (m->grid->grid[j][i] == '0')
+				m->ti[i][j].img = t->ground;
+			else if (m->grid->grid[j][i] == 'C')
+				m->ti[i][j].img = t->obj;
+			else if (m->grid->grid[j][i] == 'E')
+				m->ti[i][j].img = t->exit;
+		}
+		j++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 05:37:19 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/04/04 05:45:12 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/04 07:07:38 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	draw_map(t_map *m, t_render *r)
 			//		r->vars->mlx_win, m->t->player, i * size, j * size);
 			//else
 				mlx_put_image_to_window(r->vars->mlx,
-					r->vars->mlx_win, m->ti[j][i].img, 100, 100);
+					r->vars->mlx_win, &m->ti[0][0].img, 100, 100);
 		}
 		j++;
 	}

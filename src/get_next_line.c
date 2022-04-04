@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:45:28 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/03/03 18:52:49 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/04 03:12:48 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,13 +103,12 @@ char	*get_next_line(int fd)
 	while (!charfind(&stored[fd][0]))
 	{
 		n = read(fd, buff, 10);
-		if (n == 0)
+		if (n < 1)
 			break ;
 		buff[n] = '\0';
 		stored[fd] = ft_strjoin(stored[fd], buff);
 	}
 	free(buff);
-	//printf("stored = %s\n", stored[fd]);
 	if (stored[fd])
 		return (assignline(&stored[fd]));
 	return (NULL);

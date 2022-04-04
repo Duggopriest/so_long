@@ -3,5 +3,6 @@
 		"mlx.h": "c",
 		"so_long.h": "c",
 		"sstream": "c"
-	}
+	},
+	"workbench.view.alwaysShowHeaderActions": true
 }

@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 12:25:53 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/03/21 12:45:22 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/01 06:32:07 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int ft_squr(int x)
 		return (x);
 	while (root > x / root || root + 1 <= x/(root+1))
 	{
-		if (root > x/root)
+		if (root > x / root)
 			upper = root;
 		else
 			lower = root;

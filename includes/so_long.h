@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 12:29:19 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/03/25 17:42:28 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/04 03:57:25 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,14 @@ typedef struct s_v2 {
 	int	y;
 }	t_v2;
 
-typedef struct s_img {
-	void	*img;
+typedef struct s_textures {
+	void	*player;
+	void	*ground;
+	void	*obj;
+	void	*wall;
+	void	*exit;
 	int		w;
 	int		h;
-}	t_img;
-
-typedef struct s_textures {
-	t_img	*player;
-	t_img	*ground;
-	t_img	*obj;
-	t_img	*wall;
-	t_img	*exit;
 }	t_textures;
 
 typedef struct s_data {
@@ -61,11 +57,12 @@ typedef struct s_render {
 	t_data	*img;
 	t_vars	*vars;
 	t_v2	window;
+	char	*path;
+	t_v2	*size;
 }	t_render;
 
 typedef struct s_tile {
-	t_img	*img;
-	t_v2	*pos;
+	void	*img;
 }	t_tile;
 
 typedef struct s_grid {
@@ -75,16 +72,22 @@ typedef struct s_grid {
 }	t_grid;
 
 typedef struct s_map {
-	t_tile	**ti;
-	t_grid	*grid;
-	t_v2	*player_pos;
+	t_tile		**ti;
+	t_grid		*grid;
+	t_v2		*player_pos;
+	t_textures	*t;
 }	t_map;
 
 int		dist(int fx, int fy, int sx, int sy);
 void	pixel_put(t_data *data, int x, int y, int color);
 int		create_trgb(unsigned char t, unsigned char r,
-			 unsigned char g, unsigned char b);
-int		keypress(int keycode, t_vars *vars);
+			unsigned char g, unsigned char b);
+int		keypress(int keycode, t_render *r);
 t_grid	*grab_grid(char	*path);
+t_map	*build_map(t_render *r);
+void	draw_map(t_map *m, t_render *r);
+t_grid	*grab_grid(char	*path);
+int		render_next_frame(t_render *render);
+void	*get_size(char *path, t_render *r);
 
 #endif

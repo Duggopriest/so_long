@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:45:28 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/04/04 03:12:48 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/06 05:26:00 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,10 @@ char	*get_next_line(int fd)
 	int				n;
 	static char		*stored[1];
 
-	buff = malloc(10 + 1);
+	buff = malloc(5);
 	while (!charfind(&stored[fd][0]))
 	{
-		n = read(fd, buff, 10);
+		n = read(fd, buff, 5);
 		if (n < 1)
 			break ;
 		buff[n] = '\0';

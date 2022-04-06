@@ -2,7 +2,8 @@
 	"files.associations": {
 		"mlx.h": "c",
 		"so_long.h": "c",
-		"sstream": "c"
+		"sstream": "c",
+		"random": "c"
 	},
 	"workbench.view.alwaysShowHeaderActions": true
 }

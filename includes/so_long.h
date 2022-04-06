@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 12:29:19 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/04/04 03:57:25 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/06 09:54:26 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,6 @@ typedef struct s_vars
 	void	*mlx_win;
 }	t_vars;
 
-typedef struct s_render {
-	t_data	*img;
-	t_vars	*vars;
-	t_v2	window;
-	char	*path;
-	t_v2	*size;
-}	t_render;
-
 typedef struct s_tile {
 	void	*img;
 }	t_tile;
@@ -74,9 +66,17 @@ typedef struct s_grid {
 typedef struct s_map {
 	t_tile		**ti;
 	t_grid		*grid;
-	t_v2		*player_pos;
+	t_v2		*pp;
 	t_textures	*t;
 }	t_map;
+
+typedef struct s_render {
+	t_map	*m;
+	t_vars	*vars;
+	t_v2	window;
+	char	*path;
+	t_v2	*size;
+}	t_render;
 
 int		dist(int fx, int fy, int sx, int sy);
 void	pixel_put(t_data *data, int x, int y, int color);
@@ -85,9 +85,10 @@ int		create_trgb(unsigned char t, unsigned char r,
 int		keypress(int keycode, t_render *r);
 t_grid	*grab_grid(char	*path);
 t_map	*build_map(t_render *r);
-void	draw_map(t_map *m, t_render *r);
+void	draw_map(char c, int j, int i, t_render *r);
 t_grid	*grab_grid(char	*path);
 int		render_next_frame(t_render *render);
 void	*get_size(char *path, t_render *r);
+void	draw_circlef(t_data *img, int x, int y, int size, int color);
 
 #endif

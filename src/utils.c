@@ -1,47 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/01 05:37:19 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/04/06 10:50:16 by jgobbett         ###   ########.fr       */
+/*   Created: 2022/04/07 04:32:22 by jgobbett          #+#    #+#             */
+/*   Updated: 2022/04/07 04:39:08 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "mlx.h"
 
-void	*get_size(char *path, t_render *r)
+void	draw_loop(t_render *r)
 {
-	t_grid	*g;
-	t_v2	*i;
-
-	i = malloc(sizeof(i));
-	g = malloc(sizeof(g) + 1);
-	g = grab_grid(path);
-	i->x = g->w;
-	i->y = g->h;
-	free(g);
-	r->size = i;
-	return (i);
-}
-
-int	render_next_frame(t_render *r)
-{
-	int	j;
 	int	i;
+	int	j;
 
 	j = 0;
+	printf("drawing\n");
 	while (j < r->m->grid->h)
 	{
 		i = -1;
+		printf("\n");
 		while (++i < r->m->grid->w)
-			draw_map(r->m->grid->grid[j][i], j, i, r);
+			printf("%c", r->m->grid->grid[j][i]);//draw_map(r->m->grid->grid[j][i], j, i, r);
 		j++;
 	}
-
-	//mlx_key_hook(r->vars->mlx, keypress, r);
-	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 05:57:49 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/04/06 10:17:29 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/07 04:44:14 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 		printf("plz include map\n");
 		return (0);
 	}
+	r.obj = 0;
 	r.path = argv[1];
 	get_size(argv[1], &r);
 	vars.mlx = mlx_init();
@@ -32,6 +33,7 @@ int	main(int argc, char **argv)
 	printf("building map\n");
 	r.m = build_map(&r);
 	printf("map built\n");
+	mlx_key_hook(vars.mlx_win, keypress, &r);
 	mlx_loop_hook(r.vars->mlx, render_next_frame, &r);
 	mlx_loop(r.vars->mlx);
 }

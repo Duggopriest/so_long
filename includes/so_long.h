@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 12:29:19 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/04/06 09:54:26 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/07 04:46:41 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ typedef struct s_grid {
 typedef struct s_map {
 	t_tile		**ti;
 	t_grid		*grid;
-	t_v2		*pp;
+	int			px;
+	int			py;
 	t_textures	*t;
 }	t_map;
 
@@ -76,6 +77,7 @@ typedef struct s_render {
 	t_v2	window;
 	char	*path;
 	t_v2	*size;
+	int		obj;
 }	t_render;
 
 int		dist(int fx, int fy, int sx, int sy);
@@ -89,6 +91,6 @@ void	draw_map(char c, int j, int i, t_render *r);
 t_grid	*grab_grid(char	*path);
 int		render_next_frame(t_render *render);
 void	*get_size(char *path, t_render *r);
-void	draw_circlef(t_data *img, int x, int y, int size, int color);
+void	draw_loop(t_render *r);
 
 #endif

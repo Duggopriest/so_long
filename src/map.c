@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 09:31:41 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/04/06 10:12:55 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/06 11:05:19 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	draw_map(char c, int j, int i, t_render *r)
 			r->vars->mlx_win, r->m->t->ground, i * 50, j * 50);
 		mlx_put_image_to_window(r->vars->mlx,
 			r->vars->mlx_win, r->m->t->player, (i * 50) + 5, (j * 50) + 5);
-		r->m->pp->y = j;
-		r->m->pp->x = i;
+		r->m->py = j;
+		r->m->px = i;
 	}
 	else if (c == '0')
 		mlx_put_image_to_window(r->vars->mlx,
@@ -80,12 +80,8 @@ t_map	*int_map(char *map_path)
 {
 	t_map	*m;
 	int		j;
-	t_v2	pos;
 
-	pos.x = 0;
-	pos.y = 0;
 	m = malloc(sizeof(*m));
-	m->pp = &pos;
 	m->grid = grab_grid(map_path);
 	m->ti = malloc(sizeof(t_tile **));
 	j = 0;

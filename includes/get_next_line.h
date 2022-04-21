@@ -21,6 +21,6 @@
 # include <sys/uio.h>
 
 char	*get_next_line(int fd);
-int	ft_strlen(char *str);
+int     ft_strlen(char *str);
 
 #endif

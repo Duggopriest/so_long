@@ -57,7 +57,7 @@ t_map	*int_map(t_render *r)
 	t_map	*m;
 	int		j;
 
-	m = malloc(sizeof(*m));
+	m = malloc(sizeof(t_map));
 	m->ti = malloc(100);
 	j = 0;
 	while (j <= r->grid->h)

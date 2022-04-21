@@ -103,7 +103,7 @@ int	keypress(int k, t_render *r)
 	if (k == 65307 || k == 53)
 		exit_game(r);
 	else if (k == 'w' || k == 's' || k == 'a' || k == 'd'
-			|| k == 13 || k == 1 || k == 0 || k == 2)
+		|| k == 13 || k == 1 || k == 0 || k == 2)
 	{
 		i++;
 		ft_putnbr(i);

@@ -14,7 +14,7 @@
 
 void	ft_putnbr(int n)
 {
-	char c;
+	char	c;
 
 	if (n == -2147483648)
 		write(1, "-2147483648", 11);
@@ -67,31 +67,31 @@ int	move(int k, t_render *r)
 	x = r->m->px;
 	y = r->m->py;
 	if (k == 'w' || k == 13)
-		if (r->m->grid->grid[y - 1][x] != '1')
-			swap(&r->m->grid->grid[y - 1][x], &r->m->grid->grid[y][x], r);
+		if (r->grid->grid[y - 1][x] != '1')
+			swap(&r->grid->grid[y - 1][x], &r->grid->grid[y][x], r);
 	if (k == 's' || k == 1)
-		if (r->m->grid->grid[y + 1][x] != '1')
-			swap(&r->m->grid->grid[y + 1][x], &r->m->grid->grid[y][x], r);
+		if (r->grid->grid[y + 1][x] != '1')
+			swap(&r->grid->grid[y + 1][x], &r->grid->grid[y][x], r);
 	if (k == 'd' || k == 2)
-		if (r->m->grid->grid[y][x + 1] != '1')
-			swap(&r->m->grid->grid[y][x + 1], &r->m->grid->grid[y][x], r);
+		if (r->grid->grid[y][x + 1] != '1')
+			swap(&r->grid->grid[y][x + 1], &r->grid->grid[y][x], r);
 	if (k == 'a' || k == 0)
-		if (r->m->grid->grid[y][x - 1] != '1')
-			swap(&r->m->grid->grid[y][x - 1], &r->m->grid->grid[y][x], r);
+		if (r->grid->grid[y][x - 1] != '1')
+			swap(&r->grid->grid[y][x - 1], &r->grid->grid[y][x], r);
 	return (1);
 }
 
-void render_new_frame(t_render *r)
+void	render_new_frame(t_render *r)
 {
 	int	j;
 	int	i;
 
 	j = 0;
-	while (j < r->m->grid->h)
+	while (j < r->grid->h)
 	{
 		i = -1;
-		while (++i < r->m->grid->w)
-			draw_map(r->m->grid->grid[j][i], j, i, r);
+		while (++i < r->grid->w)
+			draw_map(r->grid->grid[j][i], j, i, r);
 		j++;
 	}
 }

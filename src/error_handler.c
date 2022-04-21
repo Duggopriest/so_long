@@ -24,36 +24,37 @@ void	putstr(char *str)
 int	map_checker(t_grid *g)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	while (i < g->w)
 		if (g->grid[0][i++] != '1')
-			j = 1;
+			return (1);
+	i = 0;
 	while (i < g->h)
 		if (g->grid[i++][0] != '1')
-			j = 1;
+			return (1);
+	i = 0;
 	while (i < g->w)
-		if (g->grid[g->h][i++] != '1')
-			j = 1;
+		if (g->grid[g->h - 1][i++] != '1')
+			return (1);
+	i = 0;
 	while (i < g->h)
-		if (g->grid[i++][g->w] != '1')
-			j = 1;
-	if (j)
-		putstr("Error\n");
-	return (j);
+		if (g->grid[i++][g->w - 1] != '1')
+			return (1);
+	return (0);
 }
 
-int	error_handle(t_render *r, char *path)
+void	error_handle(t_render *r, char *path)
 {
-	if (map_checker(r->m->grid))
-		return (1);
-	return (0);
+	if (map_checker(r->grid))
+	{
+		putstr("Error\n");
+		exit_game(r);
+	}
 }
 
 void	exit_game(t_render *r)
 {
 	mlx_destroy_window(r->vars->mlx, r->vars->mlx_win);
-	exit(0);
+	exit(1);
 }

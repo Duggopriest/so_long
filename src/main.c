@@ -24,15 +24,13 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	r.obj = 0;
-	r.path = argv[1];
-	get_size(argv[1], &r);
+	r.grid = grab_grid(argv[1]);
 	vars.mlx = mlx_init();
-	vars.mlx_win = mlx_new_window(vars.mlx, r.size->x * 50,
-			r.size->y * 50, "so_long");
+	vars.mlx_win = mlx_new_window(vars.mlx, r.grid->w * 50,
+			r.grid->h * 50, "so_long");
 	r.vars = &vars;
 	r.m = build_map(&r);
-	if (error_handle(&r, argv[1]))
-		return (0);
+	error_handle(&r, argv[1]);
 	mlx_key_hook(r.vars->mlx_win, keypress, &r);
 	mlx_loop_hook(r.vars->mlx, render_next_frame, &r);
 	mlx_loop(r.vars->mlx);

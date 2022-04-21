@@ -65,7 +65,6 @@ typedef struct s_grid {
 
 typedef struct s_map {
 	t_tile		**ti;
-	t_grid		*grid;
 	int			px;
 	int			py;
 	t_textures	*t;
@@ -73,10 +72,8 @@ typedef struct s_map {
 
 typedef struct s_render {
 	t_map	*m;
+	t_grid	*grid;
 	t_vars	*vars;
-	t_v2	window;
-	char	*path;
-	t_v2	*size;
 	int		obj;
 }	t_render;
 
@@ -88,7 +85,7 @@ t_grid	*grab_grid(char	*path);
 int		render_next_frame(t_render *render);
 void	*get_size(char *path, t_render *r);
 void	putstr(char *str);
-int		error_handle(t_render *r, char *path);
+void	error_handle(t_render *r, char *path);
 void	exit_game(t_render *r);
 void	ft_putnbr(int n);
 

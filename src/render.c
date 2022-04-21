@@ -38,21 +38,7 @@ void	draw_map(char c, int j, int i, t_render *r)
 			r->vars->mlx_win, r->m->t->wall, i * 50, j * 50);
 }
 
-void	*get_size(char *path, t_render *r)
-{
-	t_grid	*g;
-	t_v2	*i;
-
-	i = malloc(sizeof(*i) + 1);
-	g = malloc(sizeof(*g) + 1);
-	g = grab_grid(path);
-	i->x = g->w;
-	i->y = g->h;
-	//free(g);
-	r->size = i;
-	return (i);
-}
-
+//loop the frames
 int	render_next_frame(t_render *r)
 {
 	return (1);

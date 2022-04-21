@@ -37,8 +37,8 @@ t_grid	*grab_grid(char	*path)
 	int		fd;
 	char	*str;
 
-	new = malloc(sizeof(*new));
-	new->grid = malloc(300 + sizeof(new->grid));
+	new = malloc(sizeof(t_grid));
+	new->grid = malloc(300 * sizeof(*new->grid));
 	fd = open(path, O_RDONLY);
 	new->h = 0;
 	while (1)
@@ -52,17 +52,16 @@ t_grid	*grab_grid(char	*path)
 	return (new);
 }
 
-t_map	*int_map(char *map_path)
+t_map	*int_map(t_render *r)
 {
 	t_map	*m;
 	int		j;
 
 	m = malloc(sizeof(*m));
-	m->grid = grab_grid(map_path);
-	m->ti = malloc(sizeof(t_tile **) + 1);
+	m->ti = malloc(100);
 	j = 0;
-	while (j <= m->grid->h)
-		m->ti[j++] = malloc(sizeof(t_tile) * m->grid->w);
+	while (j <= r->grid->h)
+		m->ti[j++] = malloc(sizeof(t_tile) * r->grid->w);
 	return (m);
 }
 
@@ -72,15 +71,15 @@ t_map	*build_map(t_render *r)
 	int			j;
 	int			i;
 
-	m = int_map(r->path);
+	m = int_map(r);
 	m->t = grab_textures(r);
 	r->m = m;
 	j = 0;
-	while (j < m->grid->h)
+	while (j < r->grid->h)
 	{
 		i = -1;
-		while (++i < m->grid->w)
-			draw_map(m->grid->grid[j][i], j, i, r);
+		while (++i < r->grid->w)
+			draw_map(r->grid->grid[j][i], j, i, r);
 		j++;
 	}
 	return (m);

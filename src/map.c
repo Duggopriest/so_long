@@ -31,31 +31,6 @@ t_textures	*grab_textures(t_render *r)
 	return (t);
 }
 
-void	draw_map(char c, int j, int i, t_render *r)
-{
-	if (c == 'P')
-	{
-		mlx_put_image_to_window(r->vars->mlx,
-			r->vars->mlx_win, r->m->t->ground, i * 50, j * 50);
-		mlx_put_image_to_window(r->vars->mlx,
-			r->vars->mlx_win, r->m->t->player, (i * 50) + 5, (j * 50) + 5);
-		r->m->py = j;
-		r->m->px = i;
-	}
-	else if (c == '0')
-		mlx_put_image_to_window(r->vars->mlx,
-			r->vars->mlx_win, r->m->t->ground, i * 50, j * 50);
-	else if (c == 'C')
-		mlx_put_image_to_window(r->vars->mlx,
-			r->vars->mlx_win, r->m->t->obj, i * 50, j * 50);
-	else if (c == 'E')
-		mlx_put_image_to_window(r->vars->mlx,
-			r->vars->mlx_win, r->m->t->exit, i * 50, j * 50);
-	else if (c == '1')
-		mlx_put_image_to_window(r->vars->mlx,
-			r->vars->mlx_win, r->m->t->wall, i * 50, j * 50);
-}
-
 t_grid	*grab_grid(char	*path)
 {
 	t_grid	*new;
@@ -65,6 +40,7 @@ t_grid	*grab_grid(char	*path)
 	new = malloc(sizeof(*new));
 	new->grid = malloc(300 + sizeof(new->grid));
 	fd = open(path, O_RDONLY);
+	new->h = 0;
 	while (1)
 	{
 		new->grid[new->h] = get_next_line(fd);
@@ -83,7 +59,7 @@ t_map	*int_map(char *map_path)
 
 	m = malloc(sizeof(*m));
 	m->grid = grab_grid(map_path);
-	m->ti = malloc(sizeof(t_tile **));
+	m->ti = malloc(sizeof(t_tile **) + 1);
 	j = 0;
 	while (j <= m->grid->h)
 		m->ti[j++] = malloc(sizeof(t_tile) * m->grid->w);

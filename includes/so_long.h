@@ -90,5 +90,6 @@ void	*get_size(char *path, t_render *r);
 void	putstr(char *str);
 int		error_handle(t_render *r, char *path);
 void	exit_game(t_render *r);
+void	ft_putnbr(int n);
 
 #endif

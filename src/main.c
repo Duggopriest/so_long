@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 	t_vars		vars;
 	t_render	r;
 
-	if (argc < 2 || argc > 2)
+	if (argc != 2)
 	{
 		putstr("plz include map\n");
 		return (0);
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 	r.m = build_map(&r);
 	if (error_handle(&r, argv[1]))
 		return (0);
-	mlx_key_hook(vars.mlx_win, keypress, &r);
+	mlx_key_hook(r.vars->mlx_win, keypress, &r);
 	mlx_loop_hook(r.vars->mlx, render_next_frame, &r);
 	mlx_loop(r.vars->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 05:37:19 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/04/06 10:50:16 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/07 06:11:10 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,5 @@ int	render_next_frame(t_render *r)
 			draw_map(r->m->grid->grid[j][i], j, i, r);
 		j++;
 	}
-
-	//mlx_key_hook(r->vars->mlx, keypress, r);
 	return (1);
 }

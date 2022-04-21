@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 12:29:19 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/04/07 04:46:41 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/07 06:15:09 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,6 @@ typedef struct s_render {
 	int		obj;
 }	t_render;
 
-int		dist(int fx, int fy, int sx, int sy);
-void	pixel_put(t_data *data, int x, int y, int color);
-int		create_trgb(unsigned char t, unsigned char r,
-			unsigned char g, unsigned char b);
 int		keypress(int keycode, t_render *r);
 t_grid	*grab_grid(char	*path);
 t_map	*build_map(t_render *r);
@@ -91,6 +87,8 @@ void	draw_map(char c, int j, int i, t_render *r);
 t_grid	*grab_grid(char	*path);
 int		render_next_frame(t_render *render);
 void	*get_size(char *path, t_render *r);
-void	draw_loop(t_render *r);
+void	putstr(char *str);
+int		error_handle(t_render *r, char *path);
+void	exit_game(t_render *r);
 
 #endif

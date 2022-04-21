@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 08:23:00 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/04/07 04:56:08 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/07 06:10:44 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	swap(char *a, char *b, t_render *r)
 	if (*a == 'C')
 		r->obj = 1;
 	if (r->obj == 1 && *a == 'E')
-		printf("win\n");
+	{
+		putstr("win\n");
+		exit_game(r);
+	}
 	if (c == 'E')
 		*b = 'E';
 	else
@@ -50,15 +53,17 @@ int	move(int k, t_render *r)
 	return (1);
 }
 
-int	keypress(int keycode, t_render *r)
+int	keypress(int k, t_render *r)
 {
-	printf("	%i\n", keycode);
-	if (keycode == 65307 || keycode == 53)
+	static int	i = 0;
+
+	if (k == 65307 || k == 53)
+		exit_game(r);
+	else if (k == 'w' || k == 's' || k == 'a' || k == 'd')
 	{
-		mlx_destroy_window(r->vars->mlx, r->vars->mlx_win);
-		exit(0);
+		i++;
+		putstr(i + "0");
+		move(k, r);
 	}
-	else
-		move(keycode, r);
 	return (0);
 }

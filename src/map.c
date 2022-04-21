@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 09:31:41 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/04/06 11:05:19 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/07 06:01:50 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_grid	*grab_grid(char	*path)
 	char	*str;
 
 	new = malloc(sizeof(*new));
-	new->grid = malloc(100 + sizeof(new->grid));
+	new->grid = malloc(300 + sizeof(new->grid));
 	fd = open(path, O_RDONLY);
 	while (1)
 	{

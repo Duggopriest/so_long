@@ -46,11 +46,8 @@ void	swap(char *a, char *b, t_render *r)
 
 	if (*a == 'C')
 		r->obj--;
-	if (r->obj == 0 && *a == 'E')
-	{
-		putstr("win\n");
+	if ((r->obj == 0 && *a == 'E') || *a == 'B')
 		exit_game(r);
-	}
 	if (c == 'E')
 		*b = 'E';
 	else
@@ -94,6 +91,7 @@ void	render_new_frame(t_render *r)
 			draw_map(r->grid->grid[j][i], j, i, r);
 		j++;
 	}
+	display_num(r);
 }
 
 int	keypress(int k, t_render *r)
@@ -111,5 +109,6 @@ int	keypress(int k, t_render *r)
 		move(k, r);
 		render_new_frame(r);
 	}
+	r->moves = i;
 	return (0);
 }

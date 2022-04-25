@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 12:29:19 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/04/07 06:15:09 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/22 11:20:46 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,6 @@ typedef struct s_textures {
 	int		h;
 }	t_textures;
 
-typedef struct s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data;
-
 typedef struct s_vars
 {
 	void	*mlx;
@@ -78,10 +70,9 @@ typedef struct s_render {
 }	t_render;
 
 int		keypress(int keycode, t_render *r);
-t_grid	*grab_grid(char	*path);
+t_grid	*grab_grid(char	*path, t_render *r);
 t_map	*build_map(t_render *r);
 void	draw_map(char c, int j, int i, t_render *r);
-t_grid	*grab_grid(char	*path);
 int		render_next_frame(t_render *render);
 void	*get_size(char *path, t_render *r);
 void	putstr(char *str);

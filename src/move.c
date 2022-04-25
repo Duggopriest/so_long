@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 08:23:00 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/04/07 06:10:44 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/22 11:41:54 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	swap(char *a, char *b, t_render *r)
 	static char	c = '0';
 
 	if (*a == 'C')
-		r->obj = 1;
-	if (r->obj == 1 && *a == 'E')
+		r->obj--;
+	if (r->obj == 0 && *a == 'E')
 	{
 		putstr("win\n");
 		exit_game(r);

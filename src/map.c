@@ -6,12 +6,25 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 09:31:41 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/04/07 06:01:50 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/22 11:39:11 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "get_next_line.h"
+
+int	ft_str(char *str)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	j = 0;
+	while (str[++i])
+		if (str[i] == 'C')
+			j++;
+	return (j);
+}
 
 t_textures	*grab_textures(t_render *r)
 {
@@ -31,7 +44,7 @@ t_textures	*grab_textures(t_render *r)
 	return (t);
 }
 
-t_grid	*grab_grid(char	*path)
+t_grid	*grab_grid(char	*path, t_render *r)
 {
 	t_grid	*new;
 	int		fd;
@@ -46,6 +59,7 @@ t_grid	*grab_grid(char	*path)
 		new->grid[new->h] = get_next_line(fd);
 		if (!new->grid[new->h] || new->h > 100)
 			break ;
+		r->obj += ft_str(new->grid[new->h]);
 		new->h++;
 	}
 	new->w = ft_strlen(&new->grid[0][0]) - 1;

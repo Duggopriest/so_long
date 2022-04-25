@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 05:57:49 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/04/07 06:12:01 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/22 11:51:46 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	r.obj = 0;
-	r.grid = grab_grid(argv[1]);
+	r.grid = grab_grid(argv[1], &r);
 	vars.mlx = mlx_init();
 	vars.mlx_win = mlx_new_window(vars.mlx, r.grid->w * 50,
-			r.grid->h * 50, "so_long");
+			r.grid->h * 50 + 50, "so_long");
 	r.vars = &vars;
 	r.m = build_map(&r);
 	error_handle(&r, argv[1]);

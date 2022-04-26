@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 12:29:19 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/04/22 11:20:46 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/26 04:48:53 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,21 @@ typedef struct s_textures {
 	int		h;
 }	t_textures;
 
+typedef struct s_numa {
+	void	*i;
+}	t_numa;
+
 typedef struct s_numt {
-	void	*n0;
-	void	*n1;
-	void	*n2;
-	void	*n3;
-	void	*n4;
-	void	*n5;
-	void	*n6;
-	void	*n7;
-	void	*n8;
-	void	*n9;
+	t_numa	*n;
+	// void	*n1;
+	// void	*n2;
+	// void	*n3;
+	// void	*n4;
+	// void	*n5;
+	// void	*n6;
+	// void	*n7;
+	// void	*n8;
+	// void	*n9;
 	int		w;
 	int		h;
 }	t_numt;
@@ -62,7 +66,7 @@ typedef struct s_render {
 	void	*mlx_win;
 	t_map	*m;
 	t_grid	*grid;
-	t_numt	*numt;
+	t_numa	*numt;
 	int		obj;
 	int		moves;
 }	t_render;
@@ -78,6 +82,6 @@ void	error_handle(t_render *r, char *path);
 void	exit_game(t_render *r);
 void	ft_putnbr(int n);
 void	display_num(t_render *r);
-t_numt	*grab_numbers(t_render *r);
+t_numa	*grab_numbers(t_render *r);
 
 #endif

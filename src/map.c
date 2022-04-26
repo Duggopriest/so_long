@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 09:31:41 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/04/22 11:39:11 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/25 09:38:50 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_textures	*grab_textures(t_render *r)
 {
 	t_textures	*t;
 
+	putstr("textures loading...");
 	t = malloc(sizeof(t) + 10);
 	t->player = mlx_xpm_file_to_image(r->mlx,
 			"text/P.xpm", &t->w, &t->h);
@@ -45,6 +46,7 @@ t_textures	*grab_textures(t_render *r)
 			"text/1.xpm", &t->w, &t->h);
 	t->bad = mlx_xpm_file_to_image(r->mlx,
 			"text/B.xpm", &t->w, &t->h);
+	putstr("done\n");
 	return (t);
 }
 
@@ -54,6 +56,7 @@ t_grid	*grab_grid(char	*path, t_render *r)
 	int		fd;
 	char	*str;
 
+	putstr("grid loading...");
 	new = malloc(sizeof(t_grid) + 1);
 	new->grid = malloc(50 * sizeof(*new->grid));
 	fd = open(path, O_RDONLY);
@@ -67,6 +70,7 @@ t_grid	*grab_grid(char	*path, t_render *r)
 		new->h++;
 	}
 	new->w = ft_strlen(&new->grid[0][0]) - 1;
+	putstr("done\n");
 	return (new);
 }
 

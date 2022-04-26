@@ -23,17 +23,17 @@ all:
 
 test:
 	@clear
-	@echo -n Compiling Libs...
-	@make -s -C $(LIBX)
-	@echo Done
 	@echo -n Compiling so_long...
-	@gcc $(SRC) $(FLAGS) -o $(NAME)
+	@gcc $(SRC) $(FLAGSLINUX) -o $(NAME)
 	@echo Make Done
 	@clear
-	@./so_long.out map/test.ber
+	@./so_long.out map/1.ber
 
-linux:
+l:
 	@clear
+	@echo -n Compiling minilibx...
+	@echo
+	@make -s -C $(LIBXLINUX)
 	@echo Done
 	@echo -n Compiling so_long...
 	@gcc $(SRC) $(FLAGSLINUX) -o $(NAME)

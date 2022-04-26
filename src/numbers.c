@@ -1,83 +1,65 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move.c                                             :+:      :+:    :+:   */
+/*   numbers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 08:23:00 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/04/22 11:41:54 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/26 04:49:17 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_numt	*grab_numbers(t_render *r)
-{
-	t_numt	*t;
+// t_numa	*new_numa(void)
+// {
+// 	t_numa	*n;
+// 	int		i;
 
-	t = malloc(sizeof(t) + 10);
-	t->n0 = mlx_xpm_file_to_image(r->mlx,
-			"text/00.xpm", &t->w, &t->h);
-	t->n1 = mlx_xpm_file_to_image(r->mlx,
-			"text/01.xpm", &t->w, &t->h);
-	t->n2 = mlx_xpm_file_to_image(r->mlx,
-			"text/02.xpm", &t->w, &t->h);
-	t->n3 = mlx_xpm_file_to_image(r->mlx,
-			"text/03.xpm", &t->w, &t->h);
-	t->n4 = mlx_xpm_file_to_image(r->mlx,
-			"text/04.xpm", &t->w, &t->h);
-	t->n5 = mlx_xpm_file_to_image(r->mlx,
-			"text/05.xpm", &t->w, &t->h);
-	t->n6 = mlx_xpm_file_to_image(r->mlx,
-			"text/06.xpm", &t->w, &t->h);
-	t->n7 = mlx_xpm_file_to_image(r->mlx,
-			"text/07.xpm", &t->w, &t->h);
-	t->n8 = mlx_xpm_file_to_image(r->mlx,
-			"text/08.xpm", &t->w, &t->h);
-	t->n9 = mlx_xpm_file_to_image(r->mlx,
-			"text/09.xpm", &t->w, &t->h);
+// 	n = malloc(sizeof(t_numa) * 11);
+// 	i = 0;
+// 	while (i < 11)
+// 		n[i++] = malloc(sizeof(t_numa) + 1);
+// 	return (n);
+// }
+
+t_numa	*grab_numbers(t_render *r)
+{
+	t_numa	*t;
+	int		a;
+	int		b;
+
+	putstr("loading number textures...");
+	t = malloc(sizeof(t_numa) * 11);
+	t[0].i = mlx_xpm_file_to_image(r->mlx,
+			"text/00.xpm", &a, &b);
+	t[1].i = mlx_xpm_file_to_image(r->mlx,
+			"text/01.xpm", &a, &b);
+	t[2].i = mlx_xpm_file_to_image(r->mlx,
+			"text/02.xpm", &a, &b);
+	t[3].i = mlx_xpm_file_to_image(r->mlx,
+			"text/03.xpm", &a, &b);
+	t[4].i = mlx_xpm_file_to_image(r->mlx,
+			"text/04.xpm", &a, &b);
+	t[5].i = mlx_xpm_file_to_image(r->mlx,
+			"text/05.xpm", &a, &b);
+	t[6].i = mlx_xpm_file_to_image(r->mlx,
+			"text/06.xpm", &a, &b);
+	t[7].i = mlx_xpm_file_to_image(r->mlx,
+			"text/07.xpm", &a, &b);
+	t[8].i = mlx_xpm_file_to_image(r->mlx,
+			"text/08.xpm", &a, &b);
+	t[9].i = mlx_xpm_file_to_image(r->mlx,
+			"text/09.xpm", &a, &b);
 	return (t);
-}
-
-void	draw_num2(t_render *r, int c, int os)
-{
-	if (c == 6)
-		mlx_put_image_to_window(r->mlx,
-			r->mlx_win, r->numt->n6, os, 10);
-	else if (c == 7)
-		mlx_put_image_to_window(r->mlx,
-			r->mlx_win, r->numt->n7, os, 10);
-	else if (c == 8)
-		mlx_put_image_to_window(r->mlx,
-			r->mlx_win, r->numt->n8, os, 10);
-	else if (c == 9)
-		mlx_put_image_to_window(r->mlx,
-			r->mlx_win, r->numt->n9, os, 10);
 }
 
 void	draw_num(t_render *r, int c, int os)
 {
-	if (c == 0)
+	if (c >= 0 && c <= 9)
 		mlx_put_image_to_window(r->mlx,
-			r->mlx_win, r->numt->n0, os, 10);
-	else if (c == 1)
-		mlx_put_image_to_window(r->mlx,
-			r->mlx_win, r->numt->n1, os, 10);
-	else if (c == 2)
-		mlx_put_image_to_window(r->mlx,
-			r->mlx_win, r->numt->n2, os, 10);
-	else if (c == 3)
-		mlx_put_image_to_window(r->mlx,
-			r->mlx_win, r->numt->n3, os, 10);
-	else if (c == 4)
-		mlx_put_image_to_window(r->mlx,
-			r->mlx_win, r->numt->n4, os, 10);
-	else if (c == 5)
-		mlx_put_image_to_window(r->mlx,
-			r->mlx_win, r->numt->n5, os, 10);
-	else
-		draw_num2(r, c, os);
+			r->mlx_win, r->numt[c].i, os, 10);
 }
 
 void	display_num(t_render *r)

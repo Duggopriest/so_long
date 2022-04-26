@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 08:23:00 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/04/22 11:41:54 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/04/25 09:32:56 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	swap(char *a, char *b, t_render *r)
 		*b = '0';
 	c = *a;
 	*a = 'P';
+	r->moves++;
 }
 
 int	move(int k, t_render *r)
@@ -96,19 +97,15 @@ void	render_new_frame(t_render *r)
 
 int	keypress(int k, t_render *r)
 {
-	static int	i = 0;
-
 	if (k == 65307 || k == 53)
 		exit_game(r);
 	else if (k == 'w' || k == 's' || k == 'a' || k == 'd'
 		|| k == 13 || k == 1 || k == 0 || k == 2)
 	{
-		i++;
-		ft_putnbr(i);
+		ft_putnbr(r->moves);
 		putstr("\n");
 		move(k, r);
 		render_new_frame(r);
 	}
-	r->moves = i;
 	return (0);
 }

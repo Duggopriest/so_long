@@ -58,7 +58,7 @@ t_grid	*grab_grid(char	*path, t_render *r)
 
 	putstr("grid loading...");
 	new = malloc(sizeof(t_grid) + 1);
-	new->grid = malloc(50 * sizeof(*new->grid));
+	new->grid = malloc(50 * sizeof(t_grid) + 1);
 	fd = open(path, O_RDONLY);
 	new->h = 0;
 	while (1)
@@ -69,27 +69,8 @@ t_grid	*grab_grid(char	*path, t_render *r)
 		r->obj += ft_str(new->grid[new->h]);
 		new->h++;
 	}
+	close(fd);
 	new->w = ft_strlen(&new->grid[0][0]) - 1;
 	putstr("done\n");
 	return (new);
-}
-
-t_map	*build_map(t_render *r)
-{
-	t_map		*m;
-	int			j;
-	int			i;
-
-	m = malloc(sizeof(t_map) + 1);
-	m->t = grab_textures(r);
-	r->m = m;
-	j = 0;
-	while (j < r->grid->h)
-	{
-		i = -1;
-		while (++i < r->grid->w)
-			draw_map(r->grid->grid[j][i], j, i, r);
-		j++;
-	}
-	return (m);
 }

@@ -62,8 +62,8 @@ int	move(int k, t_render *r)
 	int	x;
 	int	y;
 
-	x = r->m->px;
-	y = r->m->py;
+	x = r->px;
+	y = r->py;
 	if (k == 'w' || k == 13)
 		if (r->grid->grid[y - 1][x] != '1')
 			swap(&r->grid->grid[y - 1][x], &r->grid->grid[y][x], r);

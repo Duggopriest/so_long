@@ -13,11 +13,22 @@
 #include "mlx.h"
 #include "so_long.h"
 
+void	grab_tx(t_render *r)
+{
+	putstr("loading number textures...");
+	r->numt = grab_numbers(r);
+	putstr("done\n");
+	r->t = grab_textures(r);
+	putstr("drawing map...");
+	render_new_frame(r);
+	putstr("done\n");
+}
+
 int	main(int argc, char **argv)
 {
 	t_render	*r;
 
-	r = malloc(sizeof(t_render) + 1);
+	r = malloc(sizeof(t_render));
 	if (argc != 2)
 	{
 		putstr("plz include map\n");
@@ -25,17 +36,15 @@ int	main(int argc, char **argv)
 	}
 	r->obj = 0;
 	r->grid = 0;
+	r->moves = 0;
 	r->grid = grab_grid(argv[1], r);
-	r->numt = grab_numbers(r);
-	putstr("done\n");
+	error_handle(r, argv[1]);
 	r->mlx = mlx_init();
 	r->mlx_win = mlx_new_window(r->mlx, r->grid->w * 50 + 10,
 			r->grid->h * 50 + 10, "so_long");
-	r->m = build_map(r);
-	display_num(r);
-	error_handle(r, argv[1]);
-	putstr("game loaded");
+	grab_tx(r);
 	mlx_key_hook(r->mlx_win, keypress, r);
 	mlx_loop_hook(r->mlx, render_next_frame, r);
+	putstr("game loaded!\n");
 	mlx_loop(r->mlx);
 }

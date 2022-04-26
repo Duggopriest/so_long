@@ -55,6 +55,5 @@ void	error_handle(t_render *r, char *path)
 
 void	exit_game(t_render *r)
 {
-	mlx_destroy_window(r->mlx, r->mlx_win);
 	exit(1);
 }

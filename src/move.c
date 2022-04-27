@@ -47,7 +47,7 @@ void	swap(char *a, char *b, t_render *r)
 	if (*a == 'C')
 		r->obj--;
 	if ((r->obj == 0 && *a == 'E') || *a == 'B')
-		exit_game(r);
+		exit(1);//exits game
 	if (c == 'E')
 		*b = 'E';
 	else
@@ -98,7 +98,7 @@ void	render_new_frame(t_render *r)
 int	keypress(int k, t_render *r)
 {
 	if (k == 65307 || k == 53)
-		exit_game(r);
+		exit(1);//exits game
 	else if (k == 'w' || k == 's' || k == 'a' || k == 'd'
 		|| k == 13 || k == 1 || k == 0 || k == 2)
 	{

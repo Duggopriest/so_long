@@ -39,6 +39,14 @@ l:
 	@gcc $(SRC) $(FLAGSLINUX) -o $(NAME)
 	@echo Done
 
+git:
+	@clear
+	@git add . 
+	@echo "commit msg" 
+	@read COMMIT; \
+	git commit -m "$$COMMIT";
+	@git push
+
 clean:
 	@rm -rf $(NAME)
 	@make -s fclean -C $(LIBALL)

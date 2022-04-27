@@ -45,8 +45,7 @@ git:
 	@echo "commit msg" 
 	@read COMMIT; \
 	git commit -m "$$COMMIT"; \
-	@SLEEP 50; \
-	git push
+	git push;
 
 clean:
 	@rm -rf $(NAME)

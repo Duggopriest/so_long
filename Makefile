@@ -1,15 +1,14 @@
 INC = includes
 SRC = src/*.c
 LIBX = minilibx
-LIBALL = libft
-INCS = -I$(LIBX) -I$(INC) -I$(LIBALL)
-LIBS = minilibx/libmlx.a -L$(LIBALL) -L$(LIBX) -lmlx
+INCS = -I$(LIBX) -I$(INC)
+LIBS = minilibx/libmlx.a -L$(LIBX) -lmlx
 FLAGS = $(INCS) $(LIBS) -framework OpenGL -framework Appkit
 NAME = so_long.out
 
 LIBXLINUX = minilibx-linux
-LIBSLINUX = minilibx-linux/libmlx.a -L$(LIBALL) -L$(LIBXLINUX)
-INCSLINUX = -I$(LIBXLINUX) -I$(INC) -I$(LIBALL)
+LIBSLINUX = minilibx-linux/libmlx.a -L$(LIBXLINUX)
+INCSLINUX = -I$(LIBXLINUX) -I$(INC)
 FLAGSLINUX = $(INCSLINUX) $(LIBSLINUX) -lXext -lX11 -lm -lz
 
 all:
@@ -21,15 +20,7 @@ all:
 	@gcc $(SRC) $(FLAGS) -o $(NAME)
 	@echo Done
 
-test:
-	@clear
-	@echo -n Compiling so_long...
-	@gcc $(SRC) $(FLAGSLINUX) -o $(NAME)
-	@echo Make Done
-	@clear
-	@./so_long.out map/1.ber
-
-l:
+linux:
 	@clear
 	@echo -n Compiling minilibx...
 	@echo
@@ -41,7 +32,7 @@ l:
 
 git:
 	@clear
-	@git add . 
+	@git add .
 	@echo "commit msg" 
 	@read COMMIT; \
 	git commit -m "$$COMMIT"; \
@@ -49,7 +40,6 @@ git:
 
 clean:
 	@rm -rf $(NAME)
-	@make -s fclean -C $(LIBALL)
 	@make -s clean -C $(LIBX)
 	@make -s clean -C $(LIBXLINUX)
 

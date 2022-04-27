@@ -44,8 +44,8 @@ git:
 	@git add . 
 	@echo "commit msg" 
 	@read COMMIT; \
-	git commit -m "$$COMMIT";
-	@git push
+	git commit -m "$$COMMIT"; \
+	git push
 
 clean:
 	@rm -rf $(NAME)

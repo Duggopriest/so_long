@@ -45,7 +45,7 @@ git:
 	@echo "commit msg" 
 	@read COMMIT; \
 	git commit -m "$$COMMIT"; \
-	@timeout 50; \
+	@SLEEP 50; \
 	git push
 
 clean:
